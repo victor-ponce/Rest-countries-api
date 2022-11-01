@@ -1,7 +1,10 @@
+const filters = data => {
+
 var x, i, j, l, ll, selElmnt, a, b, c;
 /* Look for any elements with the class "custom-select": */
 x = document.getElementsByClassName("custom-select");
 l = x.length;
+
 for (i = 0; i < l; i++) {
   selElmnt = x[i].getElementsByTagName("select")[0];
   ll = selElmnt.length;
@@ -13,6 +16,7 @@ for (i = 0; i < l; i++) {
   /* For each element, create a new DIV that will contain the option list: */
   b = document.createElement("DIV");
   b.setAttribute("class", "select-items select-hide");
+
   for (j = 1; j < ll; j++) {
     /* For each option in the original select element,
     create a new DIV that will act as an option item: */
@@ -25,6 +29,7 @@ for (i = 0; i < l; i++) {
         s = this.parentNode.parentNode.getElementsByTagName("select")[0];
         sl = s.length;
         h = this.parentNode.previousSibling;
+
         for (i = 0; i < sl; i++) {
           if (s.options[i].innerHTML == this.innerHTML) {
             s.selectedIndex = i;
@@ -35,6 +40,18 @@ for (i = 0; i < l; i++) {
               y[k].removeAttribute("class");
             }
             this.setAttribute("class", "same-as-selected");
+
+            console.log(s.options[i].value)
+            const query = s.options[i].value
+            if (query === '') {
+              ensign(data)
+            }
+             else {
+              const filteredForm = data.filter(item => item.region === query)
+              ensign(filteredForm)
+
+            }
+
             break;
           }
         }
@@ -61,6 +78,7 @@ function closeAllSelect(elmnt) {
   y = document.getElementsByClassName("select-selected");
   xl = x.length;
   yl = y.length;
+
   for (i = 0; i < yl; i++) {
     if (elmnt == y[i]) {
       arrNo.push(i)
@@ -68,6 +86,7 @@ function closeAllSelect(elmnt) {
       y[i].classList.remove("select-arrow-active");
     }
   }
+
   for (i = 0; i < xl; i++) {
     if (arrNo.indexOf(i)) {
       x[i].classList.add("select-hide");
@@ -78,3 +97,6 @@ function closeAllSelect(elmnt) {
 /* If the user clicks anywhere outside the select box,
 then close all select boxes: */
 document.addEventListener("click", closeAllSelect);
+
+
+}
