@@ -29,9 +29,9 @@ const fetchData = async () => {
 }
 
 const ensign = data => {
-let elementos = ''
+let elements = ''
 data.forEach(item => {
-  elementos += `
+  elements += `
   <article class="card">
   <img src="${item.flag}" alt="" class="img-fluid">
   <div class="card-content">
@@ -55,6 +55,6 @@ data.forEach(item => {
 </article>
   `
 });
-flags.innerHTML = elementos
+flags.innerHTML = elements
 }
 
