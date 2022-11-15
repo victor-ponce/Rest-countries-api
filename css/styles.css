@@ -1,3 +1,8 @@
+:root {
+  --box-shadow: 0 4px 6px -1px rgb(0 0 0 / 0.1), 0 2px 4px -2px rgb(0 0 0 / 0.1);
+  --border-radius: 0.35rem;
+}
+
 html {
   box-sizing: border-box;
 }
@@ -18,11 +23,10 @@ body {
 }
 body.dark-mode {
   --color-bg: hsl(207, 26%, 17%);
-  --color-bg-secondary: hsl(0, 0%, 100%);
+  --color-bg-secondary: hsl(209, 23%, 22%);
   --color-text: hsl(0, 0%, 100%);
   color: var(--color-text);
   background-color: var(--color-bg);
-  /*bg-secondary: hsl(200, 15%, 8%)*/
 }
 
 .container {
@@ -33,6 +37,7 @@ body.dark-mode {
 
 .img-fluid {
   width: 100%;
+  height: 35%;
 }
 
 .margin-y {
@@ -42,7 +47,7 @@ body.dark-mode {
 /* ********************* NAVBAR  **************************/
 .navbar {
   background-color: var(--color-bg-secondary);
-  box-shadow: 0 4px 6px -1px rgb(0 0 0 / 0.1), 0 2px 4px -2px rgb(0 0 0 / 0.1);
+  box-shadow: var(--box-shadow);
 }
 
 .navbar-content {
@@ -52,7 +57,8 @@ body.dark-mode {
 }
 
 .btn-dark-mode {
-  background-color: hsl(0, 0%, 100%);
+  background-color: var(--color-bg-secondary);
+  color: var(--color-text);
   border: none;
   cursor: pointer;
   opacity: 1;
@@ -61,16 +67,98 @@ body.dark-mode {
   
 }
 
-.btn-dark-mode: hover {
+.btn-dark-mode:hover {
   opacity: 0.6;
 }
 
-/* *******************   FILTROS  *************************/
+/* *******************   FILTERS  *************************/
 
 .filter-content {
   display: flex;
   justify-content: space-between;
   align-items: center;
+}
+.form-search {
+  box-shadow: var(--box-shadow);
+  border-radius: var(--border-radius);
+  background-color: var(--color-bg-secondary);
+  padding: 1rem;
+}
+.form-search i {
+  opacity: 0.5;
+}
+.form-search input {
+  border: none;
+  outline: none;
+  margin-left: 1rem;
+  background-color: var(--color-bg-secondary);
+  color: var(--color-text);
+}
+
+.custom-select {
+  position: relative;
+  width: 200px;
+}
+
+.custom-select select {
+  display: none; /*hide original SELECT element: */
+}
+
+.select-selected {
+  background-color: var(--color-bg-secondary);
+  box-shadow: var(--box-shadow);
+  border-radius: var(--border-radius);
+}
+
+/* Style the arrow inside the select element: */
+.select-selected:after {
+  position: absolute;
+  content: "";
+  top: 21px;
+  right: 10px;
+  width: 0;
+  height: 0;
+  border: 6px solid transparent;
+  border-color: var(--color-text) transparent transparent transparent;
+}
+
+/* Point the arrow upwards when the select box is open (active): */
+.select-selected.select-arrow-active:after {
+  border-color: transparent transparent var(--color-text) transparent;
+  top: 14px;
+}
+
+/* style the items (options), including the selected item: */
+.select-items div,.select-selected {
+  color: var(--color-text);
+  padding: 18px 16px;
+  border: 1px solid transparent;
+  border-color: transparent transparent rgba(0, 0, 0, 0.1) transparent;
+  cursor: pointer;
+  height: 52.4px;
+}
+
+/* Style items (options): */
+.select-items {
+  position: absolute;
+  background-color: var(--color-bg-secondary);
+  top: 100%;
+  left: 0;
+  right: 0;
+  z-index: 99;
+  box-shadow: var(--box-shadow);
+  border-radius: var(--border-radius);
+  margin-top: 0.3rem;
+}
+
+/* Hide the items when the select box is closed: */
+.select-hide {
+  display: none;
+}
+
+.select-items div:hover, .same-as-selected {
+  background-color: rgba(0, 0, 0, 0.1);
+  border-radius: var(--border-radius);
 }
 
 /********************   MAIN     **************************/
@@ -81,14 +169,15 @@ body.dark-mode {
 }
 
 .card {
-  background-color: hsl(0, 0%, 100%);
-  border-radius: 0.35rem;
-  box-shadow: 0 4px 6px -1px rgb(0 0 0 / 0.1), 0 2px 4px -2px rgb(0 0 0 / 0.1);
+  background-color: var(--color-bg-secondary);
+  border-radius: var(--border-radius);
+  box-shadow: var(--box-shadow);
+  overflow: hidden;
 }
 
 .card img {
-  border-top-left-radius: 0.35rem;
-  border-top-right-radius: 0.35rem;
+  border-top-left-radius: var(--border-radius);
+  border-top-right-radius: var(--border-radius);
 }
 
 .card-content {
@@ -99,6 +188,63 @@ body.dark-mode {
   margin-bottom: 2rem;
 }
 
+/************** DETAILS  ***********************/
+.country-modal {
+  position: fixed;
+  top: 100px;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: var(--color-bg);
+  padding: 30px;
+}
+.back {
+  position: absolute;
+  top: 3rem;
+  left: 30px;
+  background: var(--color-bg-secondary);
+  box-shadow: 0 0 5px rgba(0, 0, 0, 0.3);
+  padding: 10px 20px;
+  font-size: 1rem;
+  letter-spacing: 1px;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+}
+.modal {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  height: 100%;
+  width: 100%;
+}
+.left-modal {
+  width: 50%;
+}
+.left-modal img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+.right-modal {
+  width: 50%;
+  margin-left: 40px;
+  font-size: 1.5rem;
+}
+.modal-info {
+  display: flex;
+  justify-content: space-between;
+}
+.right-modal h1 {
+  margin: 10px 0;
+  letter-spacing: 1px;
+  font-size: 2.5rem; 
+}
+.inner {
+  width: 50%;
+}
+
+/*********** RESPONSIVE ********************/
 @media (max-width: 1000px){
   .grid {
     grid-template-columns: repeat(3, minmax(0, 1fr));
@@ -109,6 +255,20 @@ body.dark-mode {
   .grid {
     grid-template-columns: repeat(2, minmax(0, 1fr));
   } 
+  .modal {
+    margin-top: 2.5rem;
+  }
+  .modal, .modal-info {
+    flex-direction: column;
+  }
+  .modal-info {
+    font-size: 1rem;
+  }
+  .back {
+    position: fixed;
+    top: 7rem;
+    margin-left: 23%;
+  }
 }
 
 @media (max-width: 600px) {
@@ -120,8 +280,47 @@ body.dark-mode {
     flex-direction: column;
     align-items: flex-start;
   }
-
+  .form-search {
+    width: 100%;
+    margin-bottom: 1rem;
+  }
+  .form-search input {
+    width: 85%;
+  }
   .grid {
     grid-template-columns: repeat(1, minmax(0, 1fr));
+  }
+  .modal{
+    margin-top: 0;
+  }
+  .modal, .modal-info {
+    flex-direction: column;
+  }
+  .modal-info {
+    font-size: 1rem;
+  }
+  .back {
+    position: fixed;
+    top: 4rem;
+    margin-left: 22.5%;
+  }
+}
+/* Match media mode */
+@media (prefers-color-scheme: dark) {
+  body {
+    --color-bg: hsl(207, 26%, 17%);
+    --color-bg-secondary: hsl(209, 23%, 22%);
+    --color-text: hsl(0, 0%, 100%);
+    color: var(--color-text);
+    background-color: var(--color-bg);
+  }
+
+  body.light-mode {
+    --color-bg: hsl(0, 0%, 98%);
+    --color-bg-secondary: hsl(0, 0%, 100%);
+    --color-text: hsl(0, 0%, 52%);
+    font-family: 'Nunito Sans', sans-serif;
+    color: var(--color-text);
+    background-color: var(--color-bg);
   }
 }
