@@ -1,14 +1,3 @@
-
-/*fetchCountries = async () => {
-  const response = await fetch('https://restcountries.com/v2/all');
-  const myJson = await response.json(); //extract JSON from the http response
-  console.log(myJson);
-  localStorage['jsonData'] = JSON.stringify(myJson);*/
-
-
-
-
-
 const flags = document.getElementById('flags')
 
 document.addEventListener("DOMContentLoaded", e => {
@@ -18,8 +7,7 @@ document.addEventListener("DOMContentLoaded", e => {
 const fetchData = async () => {
   try {
     const res = await fetch('https://restcountries.com/v2/all')
-    //const res = await fetch('https://restcountries.com/v3.1/all') no jala con la versiòn 3.1, no sè por qué? será la sintaxis?
-    const data = await res.json()
+        const data = await res.json()
     ensign(data)
     formRequest(data)
     filters(data)

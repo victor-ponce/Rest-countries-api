@@ -305,4 +305,22 @@ body.dark-mode {
     margin-left: 22.5%;
   }
 }
+/* Match media mode */
+@media (prefers-color-scheme: dark) {
+  body {
+    --color-bg: hsl(207, 26%, 17%);
+    --color-bg-secondary: hsl(209, 23%, 22%);
+    --color-text: hsl(0, 0%, 100%);
+    color: var(--color-text);
+    background-color: var(--color-bg);
+  }
 
+  body.light-mode {
+    --color-bg: hsl(0, 0%, 98%);
+    --color-bg-secondary: hsl(0, 0%, 100%);
+    --color-text: hsl(0, 0%, 52%);
+    font-family: 'Nunito Sans', sans-serif;
+    color: var(--color-text);
+    background-color: var(--color-bg);
+  }
+}
